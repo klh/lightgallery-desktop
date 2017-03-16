@@ -8,6 +8,12 @@ import fs from 'fs';
 
 var mainWindow;
 
+var initialFiles = [];
+for(var a = 1;a < process.argv.length;a++) {
+    var file = process.argv[a];
+    initialFiles.push(file);
+}
+
 // Preserver of the window size and position between app launches.
 var mainWindowState = windowStateKeeper('main', {
     width: 1000,
@@ -1456,6 +1462,7 @@ app.on('ready', function() {
     });
 
     mainWindow.webContents.on('dom-ready', function() {
+        if(initialFiles.length > 0) mainWindow.webContents.send("openedFiles", initialFiles);
         if (env.name !== 'production') {
             if (!images) {
                 mainWindow.webContents.send('opened', app.getAppPath());
