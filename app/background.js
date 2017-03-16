@@ -14,6 +14,20 @@ for(var a = 1;a < process.argv.length;a++) {
     initialFiles.push(file);
 }
 
+var shouldQuit = app.makeSingleInstance(function(argv, workingDirectory) {
+    for(var a = 1;a < argv.length;a++) {
+        var file = argv[a];
+        initialFiles.push(file);
+    }
+    if(mainWindow) {
+        mainWindow.webContents.send("openedFiles", initialFiles);
+    }
+});
+if(shouldQuit) {
+    app.quit();
+}
+
+
 // Preserver of the window size and position between app launches.
 var mainWindowState = windowStateKeeper('main', {
     width: 1000,
