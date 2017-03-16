@@ -4,5 +4,13 @@
 		{
 			"path": "."
 		}
-	]
+	],
+  "build_systems": [
+    {
+      "name": "Test Light Gallery",
+      "shell": true,
+      "working_dir": "${project_path}",
+      "cmd": ["npm", "run-script", "kek"]
+    }
+  ]
 }
