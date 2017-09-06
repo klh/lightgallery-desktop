@@ -22,5 +22,8 @@
     "start": "node ./tasks/start",
     "test": "node ./tasks/start --env=test",
     "kek": "npm run-script build && electron ./build"
+  },
+  "dependencies": {
+    "smartcrop-sharp": "^1.0.5"
   }
 }
